@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>睡眠解码 - 我的工具箱</title>
+    <meta name="theme-color" content="#0a0e1a">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="toolkit.css">
+</head>
+
+<body>
+    <!-- 流体动态背景 -->
+    <div class="fluid-background">
+        <div class="fluid-orb orb-1"></div>
+        <div class="fluid-orb orb-2"></div>
+        <div class="fluid-orb orb-3"></div>
+    </div>
+
+    <!-- 噪音纹理 -->
+    <div class="noise-overlay"></div>
+
+    <div class="container toolkit-container glass-theme">
+
+        <!-- 顶部信息栏 -->
+        <header class="toolkit-header">
+            <div class="user-type-badge" id="userTypeBadge">
+                <span class="badge-emoji">💭</span>
+                <span class="badge-text">你是「脑内开会型」</span>
+            </div>
+            <p class="save-hint">建议将此页面添加到主屏幕 📱</p>
+        </header>
+
+        <!-- 分隔线 -->
+        <div class="section-divider"></div>
+
+        <!-- 主入口：3分钟关机音频 -->
+        <section class="tool-section audio-main">
+            <div class="tool-header">
+                <span class="tool-icon">🎧</span>
+                <div class="tool-title">
+                    <h3>今晚先听这个</h3>
+                    <p class="tool-subtitle">3分钟关机音频</p>
+                </div>
+            </div>
+            <div class="audio-player" id="mainAudioPlayer">
+                <div class="audio-progress">
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="mainProgressFill"></div>
+                    </div>
+                    <div class="time-display">
+                        <span id="mainCurrentTime">0:00</span>
+                        <span id="mainDuration">3:00</span>
+                    </div>
+                </div>
+                <div class="audio-controls">
+                    <button class="control-btn play-btn" id="mainPlayBtn">
+                        <svg class="play-icon" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M8 5v14l11-7z" />
+                        </svg>
+                        <svg class="pause-icon hidden" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M6 4h4v16H6V4zm8 0h4v16h-4V4z" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            <audio id="mainAudio" preload="metadata">
+                <source src="assets/audio/type-a.mp3" type="audio/mpeg">
+            </audio>
+        </section>
+
+        <!-- 分隔线 -->
+        <div class="section-divider"></div>
+
+        <!-- 次入口：30秒夜醒急救 -->
+        <section class="tool-section audio-emergency">
+            <div class="tool-header">
+                <span class="tool-icon">⚡</span>
+                <div class="tool-title">
+                    <h3>醒来点这里</h3>
+                    <p class="tool-subtitle">30秒夜醒急救（不要想，直接点）</p>
+                </div>
+            </div>
+            <div class="audio-player compact" id="emergencyAudioPlayer">
+                <div class="audio-progress">
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="emergencyProgressFill"></div>
+                    </div>
+                    <div class="time-display">
+                        <span id="emergencyCurrentTime">0:00</span>
+                        <span id="emergencyDuration">0:30</span>
+                    </div>
+                </div>
+                <div class="audio-controls">
+                    <button class="control-btn play-btn" id="emergencyPlayBtn">
+                        <svg class="play-icon" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M8 5v14l11-7z" />
+                        </svg>
+                        <svg class="pause-icon hidden" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M6 4h4v16H6V4zm8 0h4v16h-4V4z" />
+                        </svg>
+                    </button>
+                    <button class="control-btn loop-btn" id="loopBtn" title="循环播放">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M17 17H7v-3l-4 4 4 4v-3h12v-6h-2v4zM7 7h10v3l4-4-4-4v3H5v6h2V7z" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            <audio id="emergencyAudio" preload="metadata">
+                <source src="assets/audio/emergency.mp3" type="audio/mpeg">
+            </audio>
+        </section>
+
+        <!-- 分隔线 -->
+        <div class="section-divider"></div>
+
+        <!-- 10分钟流程卡 -->
+        <section class="tool-section image-card">
+            <div class="tool-header">
+                <span class="tool-icon">📋</span>
+                <div class="tool-title">
+                    <h3>状态很乱时跟着走一遍</h3>
+                    <p class="tool-subtitle">10分钟流程卡</p>
+                </div>
+            </div>
+            <div class="card-content">
+                <div class="flow-steps">
+                    <div class="flow-step">
+                        <span class="flow-num">1</span>
+                        <span class="flow-text">放下手机</span>
+                        <span class="flow-time">30秒</span>
+                    </div>
+                    <div class="flow-step">
+                        <span class="flow-num">2</span>
+                        <span class="flow-text">松下巴和肩膀</span>
+                        <span class="flow-time">1分钟</span>
+                    </div>
+                    <div class="flow-step">
+                        <span class="flow-num">3</span>
+                        <span class="flow-text">5次长呼气</span>
+                        <span class="flow-time">2分钟</span>
+                    </div>
+                    <div class="flow-step">
+                        <span class="flow-num">4</span>
+                        <span class="flow-text">身体扫描</span>
+                        <span class="flow-time">3分钟</span>
+                    </div>
+                    <div class="flow-step">
+                        <span class="flow-num">5</span>
+                        <span class="flow-text">听音频收尾</span>
+                        <span class="flow-time">3分钟</span>
+                    </div>
+                </div>
+                <p class="card-hint">💾 长按保存到相册</p>
+            </div>
+        </section>
+
+        <!-- 分隔线 -->
+        <div class="section-divider"></div>
+
+        <!-- 7日打卡表 -->
+        <section class="tool-section checklist-card">
+            <div class="tool-header">
+                <span class="tool-icon">✓</span>
+                <div class="tool-title">
+                    <h3>接下来7天每天做这三件</h3>
+                    <p class="tool-subtitle">7日打卡表</p>
+                </div>
+            </div>
+            <div class="card-content">
+                <div class="daily-tasks">
+                    <div class="daily-task">
+                        <span class="task-icon">☀️</span>
+                        <span class="task-text">白天：午休5分钟闭眼</span>
+                    </div>
+                    <div class="daily-task">
+                        <span class="task-icon">🌙</span>
+                        <span class="task-text">睡前：听3分钟音频</span>
+                    </div>
+                    <div class="daily-task">
+                        <span class="task-icon">⚡</span>
+                        <span class="task-text">夜醒：直接点急救（别看时间）</span>
+                    </div>
+                </div>
+                <div class="week-tracker">
+                    <div class="day-box" data-day="1">
+                        <span class="day-label">Day1</span>
+                        <span class="day-check">□</span>
+                    </div>
+                    <div class="day-box" data-day="2">
+                        <span class="day-label">Day2</span>
+                        <span class="day-check">□</span>
+                    </div>
+                    <div class="day-box" data-day="3">
+                        <span class="day-label">Day3</span>
+                        <span class="day-check">□</span>
+                    </div>
+                    <div class="day-box" data-day="4">
+                        <span class="day-label">Day4</span>
+                        <span class="day-check">□</span>
+                    </div>
+                    <div class="day-box" data-day="5">
+                        <span class="day-label">Day5</span>
+                        <span class="day-check">□</span>
+                    </div>
+                    <div class="day-box" data-day="6">
+                        <span class="day-label">Day6</span>
+                        <span class="day-check">□</span>
+                    </div>
+                    <div class="day-box" data-day="7">
+                        <span class="day-label">Day7</span>
+                        <span class="day-check">□</span>
+                    </div>
+                </div>
+                <p class="card-hint">💾 长按保存到相册</p>
+            </div>
+        </section>
+
+        <!-- 分隔线 -->
+        <div class="section-divider"></div>
+
+        <!-- 底部说明 -->
+        <footer class="toolkit-footer">
+            <div class="find-back">
+                <h4>如何再找回这个页面？</h4>
+                <ul>
+                    <li>浏览器收藏</li>
+                    <li>添加到手机主屏幕</li>
+                    <li>小红书订单记录</li>
+                </ul>
+            </div>
+            <div class="divider"></div>
+            <p class="disclaimer">
+                本工具仅供自我探索参考，不替代医疗建议
+            </p>
+            <button class="retest-btn" id="retestBtn">重新测试</button>
+        </footer>
+    </div>
+
+    <!-- 过渡层 -->
+    <div class="transition-overlay" id="transitionOverlay">
+        <div class="transition-content">
+            <div class="loading-ring"></div>
+            <p class="loading-text">加载中…</p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="toolkit.js"></script>
+</body>
+
+</html>

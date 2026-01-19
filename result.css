@@ -1,0 +1,148 @@
+/* ========================================
+   结果页样式
+   ======================================== */
+
+.result-container {
+    justify-content: flex-start;
+    padding-top: calc(env(safe-area-inset-top) + 50px);
+    text-align: center;
+}
+
+/* 类型图标 */
+.type-icon {
+    position: relative;
+    z-index: 1;
+    width: 80px;
+    height: 80px;
+    margin-bottom: var(--spacing-lg);
+    animation: fadeInScale 0.6s ease-out;
+}
+
+@keyframes fadeInScale {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.type-icon svg {
+    width: 100%;
+    height: 100%;
+}
+
+/* 类型名称 */
+.type-name {
+    position: relative;
+    z-index: 1;
+    font-size: var(--font-size-xl);
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: var(--spacing-lg);
+    animation: fadeInUp 0.6s ease-out 0.2s both;
+}
+
+/* 分隔线 */
+.divider {
+    position: relative;
+    z-index: 1;
+    width: 60%;
+    max-width: 200px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    margin: var(--spacing-lg) auto;
+}
+
+/* 类型内容 */
+.type-content {
+    position: relative;
+    z-index: 1;
+    max-width: 320px;
+    margin: 0 auto;
+    animation: fadeInUp 0.6s ease-out 0.3s both;
+}
+
+.type-description {
+    font-size: var(--font-size-base);
+    color: var(--text-secondary);
+    line-height: 1.8;
+    margin-bottom: var(--spacing-md);
+}
+
+.type-advice {
+    font-size: var(--font-size-sm);
+    color: var(--text-muted);
+    line-height: 1.6;
+    font-style: italic;
+}
+
+/* 今晚指令区 */
+.tonight-section {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 300px;
+    margin: var(--spacing-lg) auto;
+    text-align: left;
+    animation: fadeInUp 0.6s ease-out 0.4s both;
+}
+
+.tonight-title {
+    font-size: var(--font-size-base);
+    font-weight: 500;
+    color: var(--text-primary);
+    margin-bottom: var(--spacing-md);
+}
+
+.steps-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+}
+
+.step-item {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    padding: var(--spacing-sm) 0;
+}
+
+.step-num {
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(124, 92, 255, 0.2);
+    border-radius: 50%;
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+    color: #a78bfa;
+}
+
+.step-arrow {
+    color: var(--text-muted);
+    font-size: var(--font-size-sm);
+}
+
+.step-text {
+    font-size: var(--font-size-sm);
+    color: var(--text-secondary);
+}
+
+/* CTA按钮区域 */
+.result-container .cta-section {
+    margin-top: auto;
+    padding-top: var(--spacing-xl);
+    padding-bottom: var(--spacing-lg);
+    animation: fadeInUp 0.6s ease-out 0.5s both;
+}
+
+/* 按钮调整 */
+.result-container .cta-button {
+    padding: var(--spacing-md) var(--spacing-2xl);
+}

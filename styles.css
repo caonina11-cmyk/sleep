@@ -1,0 +1,615 @@
+/* ========================================
+   睡眠解码 - 光之呼吸 (Luminous Breath)
+   DESIGN SYSTEM v2.2 (Mixed: Soft BG + Nebula Halo)
+   ======================================== */
+
+:root {
+    /* ------ 新色彩系统 ------ */
+    --bg-deep: #0F172A;
+    --bg-gradient-start: #0F172A;
+    --bg-gradient-end: #1E1B4B;
+
+    --fluid-1: rgba(99, 102, 241, 0.4);
+    --fluid-2: rgba(139, 92, 246, 0.4);
+    --fluid-3: rgba(168, 85, 247, 0.3);
+
+    --halo-core: rgba(196, 181, 253, 0.15);
+    --halo-glow: rgba(167, 139, 250, 0.1);
+
+    --text-primary: #F8FAFC;
+    --text-secondary: rgba(248, 250, 252, 0.8);
+    --text-muted: rgba(248, 250, 252, 0.5);
+
+    --glass-bg: rgba(255, 255, 255, 0.05);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+
+    --radius-sm: 8px;
+    --radius-md: 16px;
+    --radius-lg: 24px;
+    --radius-full: 999px;
+
+    --spacing-xs: 8px;
+    --spacing-sm: 12px;
+    --spacing-md: 16px;
+    --spacing-lg: 24px;
+    --spacing-xl: 32px;
+    --spacing-2xl: 48px;
+
+    /* 字体 */
+    --font-serif: "Noto Serif SC", serif;
+    --font-sans: "Noto Sans SC", sans-serif;
+
+    /* ------ 兼容性变量 (Legacy Support) ------ */
+    --glow-purple: #818CF8;
+    --accent-gradient: linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.05));
+    --accent-color: #a78bfa;
+
+    --font-size-xs: 12px;
+    --font-size-sm: 14px;
+    --font-size-base: 16px;
+    --font-size-lg: 18px;
+    --font-size-xl: 24px;
+
+    --transition-base: 0.3s ease;
+    --transition-fast: 0.15s ease;
+
+    --radius-xl: 32px;
+    --bg-dark: var(--bg-deep);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+
+body {
+    font-family: var(--font-sans);
+    background-color: var(--bg-deep);
+    color: var(--text-primary);
+    line-height: 1.5;
+    overflow-x: hidden;
+    overscroll-behavior-y: none;
+}
+
+/* ========================================
+   Fluid Background (Reverted to Soft Blur)
+   ======================================== */
+
+.fluid-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: -2;
+    background: linear-gradient(180deg, var(--bg-gradient-start), var(--bg-gradient-end));
+    overflow: hidden;
+}
+
+.fluid-orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.8;
+    animation: fluidMove 20s infinite alternate ease-in-out;
+}
+
+.orb-1 {
+    width: 350px;
+    height: 350px;
+    background: var(--fluid-1);
+    top: -80px;
+    left: -80px;
+    animation-duration: 25s;
+}
+
+.orb-2 {
+    width: 450px;
+    height: 450px;
+    background: var(--fluid-2);
+    top: 30%;
+    right: -120px;
+    animation-duration: 30s;
+    animation-delay: -5s;
+}
+
+.orb-3 {
+    width: 380px;
+    height: 380px;
+    background: var(--fluid-3);
+    bottom: -80px;
+    left: 10%;
+    animation-duration: 22s;
+    animation-delay: -10s;
+}
+
+/* ========================================
+   Header Halo (Ethereal Nebula)
+   ======================================== */
+
+.header-breathing-halo {
+    position: absolute;
+    top: -5%;
+    right: -10%;
+    width: 250px;
+    height: 250px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: -1;
+    pointer-events: none;
+}
+
+/* 1. 星云层 */
+.halo-nebula-core {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    mix-blend-mode: screen;
+    filter: blur(1px);
+}
+
+.halo-nebula-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background-image:
+        radial-gradient(2px 2px at 20% 30%, rgba(167, 139, 250, 0.9) 50%, transparent 50%),
+        radial-gradient(2px 2px at 40% 70%, rgba(129, 140, 248, 0.8) 50%, transparent 50%),
+        radial-gradient(3px 3px at 60% 20%, rgba(255, 255, 255, 0.7) 50%, transparent 50%),
+        radial-gradient(2px 2px at 80% 60%, rgba(139, 92, 246, 0.8) 50%, transparent 50%);
+    opacity: 0.8;
+    animation: nebulaRotate 20s linear infinite;
+}
+
+.halo-nebula-layer:nth-child(2) {
+    animation-duration: 30s;
+    animation-direction: reverse;
+    transform: scale(0.8);
+    opacity: 0.6;
+}
+
+/* 2. 摩尔纹光环 */
+/* 2. 摩尔纹光环 (保持细腻 - 柔和版 Scheme B) */
+.halo-ring {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    /* Base: Purple 0.1 (Was White 0.15) */
+    border: 1px solid rgba(167, 139, 250, 0.1);
+    /* Reduced shadow */
+    box-shadow: 0 0 15px rgba(139, 92, 246, 0.1);
+}
+
+.halo-ring:nth-child(3) {
+    width: 80px;
+    height: 80px;
+    animation: ringPulse 4s infinite ease-in-out;
+}
+
+.halo-ring:nth-child(4) {
+    width: 120px;
+    height: 120px;
+    animation: ringPulse 4s infinite ease-in-out 0.2s;
+    border-color: rgba(167, 139, 250, 0.1);
+}
+
+.halo-ring:nth-child(5) {
+    width: 160px;
+    height: 160px;
+    animation: ringPulse 4s infinite ease-in-out 0.4s;
+    border-color: rgba(167, 139, 250, 0.05);
+}
+
+/* 3. 核心辉光 */
+.halo-core-glow {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    background: radial-gradient(circle, rgba(167, 139, 250, 0.4) 0%, transparent 70%);
+    filter: blur(10px);
+    animation: coreBreathe 4s infinite ease-in-out;
+}
+
+@keyframes nebulaRotate {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes ringPulse {
+
+    0%,
+    100% {
+        transform: translate(-50%, -50%) scale(0.95);
+        opacity: 0.8;
+        border-color: rgba(167, 139, 250, 0.1);
+    }
+
+    50% {
+        transform: translate(-50%, -50%) scale(1.05);
+        opacity: 1;
+        /* Peak: White 0.15 (Was 0.3) - Much softer */
+        border-color: rgba(255, 255, 255, 0.15);
+    }
+}
+
+
+
+@keyframes coreBreathe {
+
+    0%,
+    100% {
+        transform: scale(0.8);
+        opacity: 0.5;
+    }
+
+    50% {
+        transform: scale(1.5);
+        opacity: 0.9;
+    }
+}
+
+@keyframes fluidMove {
+    0% {
+        transform: translate(0, 0) scale(1);
+    }
+
+    100% {
+        transform: translate(30px, 50px) scale(1.1);
+    }
+}
+
+/* ========================================
+   Common Styles
+   ======================================== */
+
+.noise-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none;
+}
+
+/* Container */
+.container {
+    position: relative;
+    width: 100%;
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    padding: calc(env(safe-area-inset-top) + 20px) 24px calc(env(safe-area-inset-bottom) + 30px);
+    isolation: isolate;
+}
+
+/* Header */
+.header {
+    margin-bottom: 30px;
+    text-align: left;
+    position: relative;
+    z-index: 10;
+    padding-top: 10px;
+}
+
+.serif-title {
+    font-family: var(--font-serif);
+    font-size: 42px;
+    font-weight: 600;
+    line-height: 1.1;
+    margin-bottom: 16px;
+    background: linear-gradient(135deg, #fff 0%, rgba(255, 255, 255, 0.8) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: -1px;
+}
+
+.serif-title.large {
+    font-size: 48px;
+}
+
+.subtitle {
+    font-family: var(--font-sans);
+    font-size: 16px;
+    color: var(--text-secondary);
+    letter-spacing: 0.5px;
+    line-height: 1.6;
+    font-weight: 300;
+}
+
+/* Resonance (SVG Icons) */
+.resonance-vertical-section {
+    width: 100%;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 30px;
+}
+
+.section-hint {
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-bottom: 16px;
+    padding-left: 2px;
+}
+
+.resonance-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.resonance-item.glass-card-sm {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+    padding: 16px 20px;
+    transition: all 0.3s ease;
+}
+
+.resonance-item:active {
+    background: rgba(255, 255, 255, 0.08);
+    transform: scale(0.99);
+}
+
+.icon-box {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    color: #A78BFA;
+    filter: drop-shadow(0 0 8px rgba(167, 139, 250, 0.4));
+}
+
+.svg-icon {
+    width: 100%;
+    height: 100%;
+}
+
+.resonance-item .text {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.resonance-item .main {
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--text-primary);
+}
+
+.resonance-item .sub {
+    font-size: 13px;
+    color: var(--text-muted);
+}
+
+/* Bottom Fixed Area & CTA */
+.bottom-fixed-area {
+    margin-top: auto;
+    width: 100%;
+    padding-bottom: 10px;
+}
+
+.trust-badge {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 16px;
+}
+
+.trust-badge span {
+    font-size: 12px;
+    color: #A78BFA;
+    background: rgba(139, 92, 246, 0.1);
+    padding: 6px 12px;
+    border-radius: 6px;
+    border: 1px solid rgba(139, 92, 246, 0.15);
+}
+
+/* CTA Button (Streamer + Stacked) */
+.btn-streamer {
+    position: relative;
+    width: 100%;
+    /* 模拟手机按钮宽度 */
+    max-width: 100%;
+    height: 70px;
+    /* Slightly taller for stacked text */
+    border-radius: 999px;
+    background: #0F172A;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    padding: 2px;
+    /* For the gradient border effect */
+    box-shadow: 0 0 20px rgba(139, 92, 246, 0.4);
+    overflow: hidden;
+    cursor: pointer;
+    border: none;
+    /* Reset default border */
+    transform: translateZ(0);
+    /* Hardware accel */
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn-streamer:active {
+    transform: scale(0.96);
+    box-shadow: 0 0 10px rgba(139, 92, 246, 0.6);
+}
+
+.btn-streamer::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: conic-gradient(transparent, transparent 70%, #818CF8 85%, #C4B5FD 95%, transparent);
+    animation: rotateStreamer 2s linear infinite;
+}
+
+.btn-streamer-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #1E1B4B, #0F172A);
+    border-radius: 999px;
+    display: flex;
+    flex-direction: column;
+    /* Stacked */
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+    gap: 2px;
+}
+
+.btn-main-text {
+    font-size: 19px;
+    font-weight: 600;
+    line-height: 1.1;
+    color: #fff;
+    letter-spacing: 1px;
+    background: linear-gradient(to right, #fff, #E0E7FF);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.btn-sub-text {
+    font-size: 12px;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.7);
+    letter-spacing: 0.5px;
+}
+
+@keyframes rotateStreamer {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Legacy aliases / Overrides if needed */
+.cta-button {
+    outline: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.disclaimer {
+    text-align: center;
+    font-size: 11px;
+    color: var(--text-muted);
+    margin-top: 12px;
+}
+
+/* Entrance Animations */
+
+.animate-fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.8s ease-out forwards;
+}
+
+.delay-0 {
+    animation-delay: 0.1s;
+}
+
+.delay-1 {
+    animation-delay: 0.3s;
+}
+
+.delay-2 {
+    animation-delay: 0.5s;
+}
+
+.delay-3 {
+    animation-delay: 0.7s;
+}
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Transition Overlay */
+.transition-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--bg-deep);
+    z-index: 999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s;
+}
+
+.transition-overlay.active {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.transition-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.luminous-halo.small {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background: radial-gradient(circle, var(--halo-core) 0%, var(--halo-glow) 40%, transparent 70%);
+    filter: blur(20px);
+    animation: breathe 8s infinite ease-in-out;
+}
+
+.loading-text {
+    color: var(--text-secondary);
+    font-size: 14px;
+    letter-spacing: 1px;
+}
+
+@keyframes breathe {
+
+    0%,
+    100% {
+        transform: scale(0.9);
+        opacity: 0.6;
+    }
+
+    50% {
+        transform: scale(1.3);
+        opacity: 1;
+    }
+}

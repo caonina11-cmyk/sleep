@@ -1,0 +1,223 @@
+/* ========================================
+   问卷页样式
+   ======================================== */
+
+.quiz-container {
+    justify-content: flex-start;
+    padding-top: calc(env(safe-area-inset-top) + 60px);
+    width: 100%;
+}
+
+body {
+    /* Match Index.html Deep Gradient */
+    background: radial-gradient(circle at 80% 10%, #2e265c 0%, #17153B 40%, #020205 100%);
+    color: white;
+    min-height: 100vh;
+}
+
+/* 进度指示器 */
+.progress-section {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-2xl);
+}
+
+.progress-dots {
+    display: flex;
+    gap: var(--spacing-sm);
+}
+
+.progress-dots .dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    transition: all var(--transition-base);
+}
+
+.progress-dots .dot.active {
+    background: var(--glow-purple);
+    box-shadow: 0 0 10px rgba(124, 92, 255, 0.5);
+}
+
+.progress-dots .dot.completed {
+    background: rgba(124, 92, 255, 0.6);
+}
+
+.progress-text {
+    font-size: var(--font-size-sm);
+    color: var(--text-muted);
+}
+
+/* 问卷区域 */
+.quiz-wrapper {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+/* 问题滑块 */
+.quiz-slide {
+    display: none;
+    flex-direction: column;
+    animation: slideIn 0.4s ease-out;
+}
+
+.quiz-slide.active {
+    display: flex;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideOut {
+    from {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+    to {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+}
+
+/* 问题文字 */
+.question-text {
+    font-size: var(--font-size-xl);
+    font-weight: 500;
+    color: var(--text-primary);
+    text-align: center;
+    margin-bottom: var(--spacing-2xl);
+    line-height: 1.4;
+}
+
+/* 选项列表 */
+.options-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+}
+
+/* 选项按钮 */
+.option-btn {
+    width: 100%;
+    padding: var(--spacing-lg) var(--spacing-xl);
+    padding-left: 3.5rem;
+    /* Space for checkmark */
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius-lg);
+    text-align: left;
+    cursor: pointer;
+    transition: all var(--transition-base);
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    position: relative;
+    /* Context for pseudo */
+}
+
+/* Custom Checkbox/Radio Indicator */
+.option-btn::before {
+    content: '';
+    position: absolute;
+    left: 1.25rem;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 1.25rem;
+    height: 1.25rem;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    /* Circle by default */
+    transition: all 0.3s ease;
+}
+
+.option-btn:hover {
+    background: rgba(124, 92, 255, 0.15);
+    border-color: rgba(124, 92, 255, 0.4);
+}
+
+.option-btn:hover::before {
+    border-color: #A78BFA;
+}
+
+.option-btn.selected {
+    background: rgba(124, 92, 255, 0.25);
+    border-color: var(--glow-purple);
+    box-shadow: 0 0 30px rgba(124, 92, 255, 0.2);
+}
+
+/* Selected State for Indicator */
+.option-btn.selected::before {
+    background-color: #818CF8;
+    border-color: #818CF8;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'%3E%3C/polyline%3E%3C/svg%3E");
+    background-size: 80%;
+    background-position: center;
+    background-repeat: no-repeat;
+    box-shadow: 0 0 10px rgba(129, 140, 248, 0.5);
+}
+
+.option-text {
+    font-size: var(--font-size-base);
+    font-weight: 500;
+    color: var(--text-primary);
+}
+
+.option-desc {
+    font-size: var(--font-size-sm);
+    color: var(--text-muted);
+}
+
+.option-desc:empty {
+    display: none;
+}
+
+/* 选中状态动画 */
+.option-btn.selected .option-text {
+    color: #a78bfa;
+}
+
+/* 点击波纹效果 */
+.option-btn {
+    position: relative;
+    overflow: hidden;
+}
+
+/* 点击波纹 - 升级为发光扩散 */
+.option-btn::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: radial-gradient(circle, rgba(167, 139, 250, 0.8) 0%, rgba(124, 92, 255, 0) 70%);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.5s ease-out, height 0.5s ease-out, opacity 0.5s ease-out;
+    opacity: 0.8;
+}
+
+.option-btn.ripple::after {
+    width: 400px;
+    height: 400px;
+    opacity: 0;
+}
