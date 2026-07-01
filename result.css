@@ -117,11 +117,11 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background: rgba(232, 168, 96, 0.2);
+    background: rgba(124, 92, 255, 0.2);
     border-radius: 50%;
     font-size: var(--font-size-sm);
     font-weight: 600;
-    color: #F2B872;
+    color: #a78bfa;
 }
 
 .step-arrow {

@@ -10,7 +10,7 @@
 
 body {
     /* Match Index.html Deep Gradient */
-    background: radial-gradient(circle at 80% 10%, #3A2718 0%, #241812 40%, #0D0806 100%);
+    background: radial-gradient(circle at 80% 10%, #2e265c 0%, #17153B 40%, #020205 100%);
     color: white;
     min-height: 100vh;
 }
@@ -41,11 +41,11 @@ body {
 
 .progress-dots .dot.active {
     background: var(--glow-purple);
-    box-shadow: 0 0 10px rgba(232, 168, 96, 0.5);
+    box-shadow: 0 0 10px rgba(124, 92, 255, 0.5);
 }
 
 .progress-dots .dot.completed {
-    background: rgba(232, 168, 96, 0.6);
+    background: rgba(124, 92, 255, 0.6);
 }
 
 .progress-text {
@@ -150,29 +150,29 @@ body {
 }
 
 .option-btn:hover {
-    background: rgba(232, 168, 96, 0.15);
-    border-color: rgba(232, 168, 96, 0.4);
+    background: rgba(124, 92, 255, 0.15);
+    border-color: rgba(124, 92, 255, 0.4);
 }
 
 .option-btn:hover::before {
-    border-color: #F2B872;
+    border-color: #A78BFA;
 }
 
 .option-btn.selected {
-    background: rgba(232, 168, 96, 0.25);
+    background: rgba(124, 92, 255, 0.25);
     border-color: var(--glow-purple);
-    box-shadow: 0 0 30px rgba(232, 168, 96, 0.2);
+    box-shadow: 0 0 30px rgba(124, 92, 255, 0.2);
 }
 
 /* Selected State for Indicator */
 .option-btn.selected::before {
-    background-color: #E8A860;
-    border-color: #E8A860;
+    background-color: #818CF8;
+    border-color: #818CF8;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'%3E%3C/polyline%3E%3C/svg%3E");
     background-size: 80%;
     background-position: center;
     background-repeat: no-repeat;
-    box-shadow: 0 0 10px rgba(232, 168, 96, 0.5);
+    box-shadow: 0 0 10px rgba(129, 140, 248, 0.5);
 }
 
 .option-text {
@@ -192,7 +192,7 @@ body {
 
 /* 选中状态动画 */
 .option-btn.selected .option-text {
-    color: #F2B872;
+    color: #a78bfa;
 }
 
 /* 点击波纹效果 */
@@ -209,7 +209,7 @@ body {
     left: 50%;
     width: 0;
     height: 0;
-    background: radial-gradient(circle, rgba(242, 184, 114, 0.8) 0%, rgba(232, 168, 96, 0) 70%);
+    background: radial-gradient(circle, rgba(167, 139, 250, 0.8) 0%, rgba(124, 92, 255, 0) 70%);
     border-radius: 50%;
     transform: translate(-50%, -50%);
     transition: width 0.5s ease-out, height 0.5s ease-out, opacity 0.5s ease-out;
