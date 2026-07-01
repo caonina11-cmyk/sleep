@@ -5,13 +5,13 @@
 
 :root {
     /* ------ 暖夜烛光色彩系统 ------ */
-    --bg-deep: #1B1410;
-    --bg-gradient-start: #1B1410;
-    --bg-gradient-end: #2E1F16;
+    --bg-deep: #140D08;
+    --bg-gradient-start: #17100A;
+    --bg-gradient-end: #0E0906;
 
-    --fluid-1: rgba(224, 150, 80, 0.4);
-    --fluid-2: rgba(230, 150, 70, 0.38);
-    --fluid-3: rgba(242, 184, 114, 0.3);
+    --fluid-1: rgba(255, 168, 82, 0.28);
+    --fluid-2: rgba(255, 138, 66, 0.22);
+    --fluid-3: rgba(255, 196, 120, 0.2);
 
     --halo-core: rgba(255, 217, 160, 0.16);
     --halo-glow: rgba(242, 184, 114, 0.1);
@@ -92,8 +92,8 @@ body {
 .fluid-orb {
     position: absolute;
     border-radius: 50%;
-    filter: blur(80px);
-    opacity: 0.8;
+    filter: blur(100px);
+    opacity: 0.55;
     animation: fluidMove 20s infinite alternate ease-in-out;
 }
 
