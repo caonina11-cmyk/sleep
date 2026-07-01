@@ -22,8 +22,8 @@
     align-items: center;
     gap: var(--spacing-xs);
     padding: var(--spacing-xs) var(--spacing-md);
-    background: rgba(124, 92, 255, 0.15);
-    border: 1px solid rgba(124, 92, 255, 0.3);
+    background: rgba(232, 168, 96, 0.15);
+    border: 1px solid rgba(232, 168, 96, 0.3);
     border-radius: var(--radius-full);
     margin-bottom: var(--spacing-sm);
 }
@@ -34,7 +34,7 @@
 
 .badge-text {
     font-size: var(--font-size-sm);
-    color: #a78bfa;
+    color: #F2B872;
     font-weight: 500;
 }
 
@@ -141,12 +141,12 @@
     color: white;
     cursor: pointer;
     transition: transform var(--transition-fast), box-shadow var(--transition-fast);
-    box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);
+    box-shadow: 0 4px 15px rgba(224, 150, 80, 0.4);
 }
 
 .control-btn:hover {
     transform: scale(1.05);
-    box-shadow: 0 6px 20px rgba(99, 102, 241, 0.5);
+    box-shadow: 0 6px 20px rgba(224, 150, 80, 0.5);
 }
 
 .control-btn:active {
@@ -170,8 +170,8 @@
 }
 
 .control-btn.loop-btn.active {
-    background: rgba(124, 92, 255, 0.3);
-    color: #a78bfa;
+    background: rgba(232, 168, 96, 0.3);
+    color: #F2B872;
 }
 
 .control-btn.loop-btn svg {
@@ -229,11 +229,11 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background: rgba(124, 92, 255, 0.2);
+    background: rgba(232, 168, 96, 0.2);
     border-radius: 50%;
     font-size: var(--font-size-xs);
     font-weight: 600;
-    color: #a78bfa;
+    color: #F2B872;
     flex-shrink: 0;
 }
 
@@ -301,7 +301,7 @@
 }
 
 .day-box.checked .day-check {
-    color: #a78bfa;
+    color: #F2B872;
 }
 
 .day-label {
